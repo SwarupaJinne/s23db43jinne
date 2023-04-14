@@ -34,3 +34,23 @@ res.send('NOT IMPLEMENTED: mango delete DELETE ' + req.params.id);
 exports.mango_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: mango update PUT' + req.params.id);
 };
+
+/ VIEWS
+// Handle a show all view
+exports.mango_view_all_Page = async function(req, res) {
+try{
+themangos = await mango.find();
+res.render('mangos', { title: 'mango Search Results', results: themangos });
+}
+catch(err){
+res.status(500);
+res.send(`{"error": ${err}}`);
+}
+};
+var express = require('express');
+const mango_controlers= require('../controllers/mango');
+var router = express.Router();
+/* GET mangos */
+router.get('/', mango_controlers.mango_view_all_Page );
+module.exports = router;
+
