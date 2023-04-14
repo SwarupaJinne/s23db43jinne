@@ -71,7 +71,7 @@ res.send('NOT IMPLEMENTED: mango delete DELETE ' + req.params.id);
 res.send('NOT IMPLEMENTED: mango update PUT' + req.params.id);
 };*/
 
-/ Handle mango update form on PUT.
+// Handle mango update form on PUT.
 exports.mango_update_put = async function(req, res) {
 console.log(`update on id ${req.params.id} with body
 ${JSON.stringify(req.body)}`)
