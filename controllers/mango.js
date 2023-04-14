@@ -80,8 +80,8 @@ let toUpdate = await mango.findById( req.params.id)
 // Do updates of properties
 if(req.body.mango_type)
 toUpdate.mango_type = req.body.mango_type;
-if(req.body.cost) toUpdate.cost = req.body.cost;
-if(req.body.size) toUpdate.size = req.body.size;
+if(req.body.mango_quantity) toUpdate.mango_quantity = req.body.mango_quantity;
+if(req.body.Mango_Price) toUpdate.Mango_Price = req.body.Mango_Price;
 let result = await toUpdate.save();
 console.log("Sucess " + result)
 res.send(result)
