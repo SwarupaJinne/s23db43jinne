@@ -1,8 +1,23 @@
 var mango = require('../models/mango');
+
 // List of all mango
+exports.mango_list = async function(req, res) {
+    try{
+    themango = await mango.find();
+    res.send(themango);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+    
+
+// List of all mango
+/*
 exports.mango_list = function(req, res) {
 res.send('NOT IMPLEMENTED: mango list');
-};
+}; */
 // for a specific mango.
 exports.mango_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: mango detail: ' + req.params.id);
