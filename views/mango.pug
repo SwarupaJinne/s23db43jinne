@@ -2,10 +2,10 @@ extends layout
 
 block content
   h1= title
-  - var mango=[{mango_type:"Thothapuri",mango_quantity:"2",mango_price:100},{mango_type:"Rasalu",mango_quantity:"4",mango_price:200},{mango_type:"Alphonso",mango_quantity:"6",mango_price:300}]
+  - var items= results
   div(class="container-fluid")
   div(class="row")
-   each i,index  in mango
+   each i,index  in items
     div(class="col-sm-2" onclick=`buy(${index})`)
                 p Mango_Type:  #{i.mango_type} 
                 p Mango_Quantity: #{i.mango_quantity}
