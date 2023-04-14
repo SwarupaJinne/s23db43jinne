@@ -35,7 +35,7 @@ exports.mango_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: mango update PUT' + req.params.id);
 };
 
-/ VIEWS
+// VIEWS
 // Handle a show all view
 exports.mango_view_all_Page = async function(req, res) {
 try{
