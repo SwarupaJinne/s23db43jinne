@@ -1,0 +1,42 @@
+extends layout
+block content
+ h1= title
+ if (toShow == null)
+  h2 No instance to update
+ else
+  - let mangoid = toShow._id
+  - let mango_type = toShow.mango_type
+  - let mango_quantity = toShow.mango_quantity
+  - let Mango_Price = toShow.Mango_Price
+  div.row(class='mb-2')
+   div.mr-1 ID is
+   div #{mangoid}
+  - let actionid = "/resource/mango/" + mangoid
+  form(id='mangoForm', action= actionid, method="PUT")
+   div.form-group
+     label.mangoAttr(for='mango_type') mango_type
+     input#mango_type(type='String', name='mango_type', value= mango_type )
+   div.form-group
+     label.mangoAttr(for='mango_quantity') mango_quantity
+     input#mango_quantity(type='String', name='mango_quantity', value= mango_quantity )
+   div.form-group
+     label.mangoAttr(for='Mango_Price') Mango_Price
+     input#Mango_Price(type='number', name='Mango_Price', value= Mango_Price )
+   input(type="submit")
+  script.
+   document.forms['mangoForm'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    // TODO do something here to show user that form is being submitted
+    fetch(event.target.action, {
+     method: 'PUT',
+     body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+    }).then((resp) => {
+     return resp.json(); // or resp.text() or whatever the server sends
+    }).then((body) => {
+     alert("Update succeded")
+     // TODO handle body
+    }).catch((error) => {
+     // TODO handle error
+     alert("Update failed " + error )
+    });
+   });
