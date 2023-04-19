@@ -63,9 +63,26 @@ res.send(`{"error": ${err}}`);
 }
 };
 // Handle mango delete form on DELETE.
+/*
 exports.mango_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: mango delete DELETE ' + req.params.id);
-};
+};*/
+
+// Handle mango delete on DELETE.
+exports.mango_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await mango.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    };
+    
+
+
 // Handle mango update form on PUT.
 /*exports.mango_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: mango update PUT' + req.params.id);
@@ -78,8 +95,7 @@ ${JSON.stringify(req.body)}`)
 try {
 let toUpdate = await mango.findById( req.params.id)
 // Do updates of properties
-if(req.body.mango_type)
-toUpdate.mango_type = req.body.mango_type;
+if(req.body.mango_type) toUpdate.mango_type = req.body.mango_type;
 if(req.body.mango_quantity) toUpdate.mango_quantity = req.body.mango_quantity;
 if(req.body.Mango_Price) toUpdate.Mango_Price = req.body.Mango_Price;
 let result = await toUpdate.save();
