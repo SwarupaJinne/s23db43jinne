@@ -52,7 +52,7 @@ let document = new mango();
 // {"mango_type":"goat", "cost":12, "size":"large"}
 document.mango_type = req.body.mango_type;
 document.mango_quantity = req.body.mango_quantity;
-document.mango_price = req.body.mango_price;
+document.Mango_Price = req.body.Mango_Price;
 try{
 let result = await document.save();
 res.send(result);
@@ -118,6 +118,35 @@ exports.mango_view_all_Page = async function(req, res) {
     catch(err){
     res.status(500);
     res.send(`{"error": ${err}}`);
+    }
+    };
+
+
+    // Handle a show one view with id specified by query
+exports.mango_view_one_Page = async function(req, res) {
+console.log("single view for id " + req.query.id)
+try{
+result = await mango.findById( req.query.id)
+res.render('mangodetail',
+{ title: 'mango Detail', toShow: result });
+}
+catch(err){
+res.status(500)
+res.send(`{'error': '${err}'}`);
+}
+};
+
+// Handle building the view for creating a mango.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.mango_create_Page = function(req, res) {
+    console.log("create view")
+    try{
+    res.render('mangocreate', { title: 'mango Create'});
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
     }
     };
 

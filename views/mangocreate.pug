@@ -1,0 +1,33 @@
+extends layout
+block content
+ h1= title
+ form(id='mangoForm', action="/resource/mango", method="POST")
+  div.form-group
+    label.mangoAttr(for='mango_type') mango_type
+    input#mango_type(type='String', name='mango_type')
+  div.form-group
+    label.mangoAttr(for='mango_quantity') mango_quantity
+    input#mango_quantity(type='String', name='mango_quantity')
+  div.form-group
+    label.mangoAttr(for='Mango_Price') Mango_Price
+    input#Mango_Price(type='number', name='Mango_Price')
+  input(type="submit")
+ script.
+  document.forms['mangoForm'].addEventListener('submit', (event) => {
+   event.preventDefault();
+   // TODO do something here to show user that form is being submitted
+   fetch(event.target.action, {
+    method: 'POST',
+    body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+   }).then((resp) => {
+    return resp.json(); // or resp.text() or whatever the server sends
+   }).then((body) => {
+    alert("Save succeded")
+    // TODO handle body
+   }).catch((error) => {
+    // TODO handle error
+    alert("Save failed " + error )
+   });
+  });
+
+  
