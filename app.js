@@ -44,6 +44,11 @@ var selectorRouter = require('./routes/selector');
 var mango = require("./models/mango");
 var resourceRouter = require('./routes/resource');
 
+var Account =require('./models/account');
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
+
 var app = express();
 
 // view engine setup
@@ -107,10 +112,7 @@ if (reseed) {recreateDB();}
 // passport config
 // Use the existing connection
 // The Account model
-var Account =require('./models/account');
-passport.use(new LocalStrategy(Account.authenticate()));
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
+
 
 
 // catch 404 and forward to error handler

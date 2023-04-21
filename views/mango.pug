@@ -2,16 +2,24 @@ extends layout
 
 block content
   h1= title
-  - var items= results
-  div(class="container-fluid")
-  div(class="row")
-   each i,index  in items
-    div(class="col-sm-2" onclick=`buy(${index})`)
-                p Mango_Type:  #{i.mango_type} 
-                p Mango_Quantity: #{i.mango_quantity}
-                p Mango_Price: #{i.Mango_Price}
-    script.
-        function buy(a)
-        {
-            alert(`You purchased Item ${a+1}`)
-        }
+  - let items = results
+    Console.log(items)
+  div(class="container-fluid mt-3")
+    div(class="row m-1")
+    
+        each item,index in results
+         - let destination = `dispatch(\"/mango/update?id=${item._id}\")`
+            div(class="col-sm-3 bg-info m-2 p-4" onclick=`buy(${index})`) #{item.mango_type} - #{item.mango_quantity } - #{item.Mango_Price}
+             button.btn( class="btn-primary ml-1", onclick= destination) Update
+  
+  
+  
+  script.
+   function buy(itemNo)
+   {
+     alert(`You purchased Item ${itemNo+1}`)
+   }
+   function dispatch(path)
+   {
+     window.location.href=path
+   }

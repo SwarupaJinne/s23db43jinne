@@ -29,11 +29,13 @@ res.send('NOT IMPLEMENTED: mango list');
 exports.mango_detail = async function(req, res) {
     console.log("detail" + req.params.id)
     try {
-    result = await mango.findById( req.params.id)
-    res.send(result)
+        results = await mango.findById( req.params.id)
+        //res.send("in detail file" + result)
+        //res.render('mango', { title: 'mango Search Results', results: themango });
+        res.send(results)
     } catch (error) {
-    res.status(500)
-    res.send(`{"error": document for id ${req.params.id} not found`);
+        res.status(500)
+        res.send(`{"error": document for id ${req.params.id} not found`);
     }
     };
     

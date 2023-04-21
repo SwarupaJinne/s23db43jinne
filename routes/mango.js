@@ -3,7 +3,7 @@ const mango_controlers= require('../controllers/mango');
 var router = express.Router();
 /* GET mango */
 // GET request for one mango.
-router.get('/', mango_controlers.mango_detail);
+router.get('/', mango_controlers.mango_view_all_Page);
 /* GET detail mango page */
 router.get('/detail', mango_controlers.mango_view_one_Page);
 /* GET create mango page */
