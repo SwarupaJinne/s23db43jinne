@@ -21,7 +21,7 @@ block content
      input#mango_quantity(type='String', name='mango_quantity', value= mango_quantity )
    div.form-group
      label.mangoAttr(for='Mango_Price') Mango_Price
-     input#Mango_Price(type='number', name='Mango_Price', value= Mango_Price )
+     input#Mango_Price(type='number', name='Mango_Price', value= Mango_Price min= 10, max = 2000)
    input(type="submit")
   script.
    document.forms['mangoForm'].addEventListener('submit', (event) => {
